@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Primary palette */
+  --color-primary: #4f46e5;
+  --color-primary-light: #818cf8;
+  --color-primary-dark: #3730a3;
+  --color-accent: #f59e0b;
+  --color-accent-light: #fbbf24;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+
+  /* Surface */
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+
+  /* Callout semantic colors — light */
+  --color-callout-info-bg: #eff6ff;
+  --color-callout-info-border: #bfdbfe;
+  --color-callout-info-text: #1e40af;
+  --color-callout-info-label: #2563eb;
+
+  --color-callout-warning-bg: #fffbeb;
+  --color-callout-warning-border: #fde68a;
+  --color-callout-warning-text: #92400e;
+  --color-callout-warning-label: #d97706;
+
+  --color-callout-success-bg: #f0fdf4;
+  --color-callout-success-border: #bbf7d0;
+  --color-callout-success-text: #166534;
+  --color-callout-success-label: #16a34a;
+
+  --color-callout-danger-bg: #fef2f2;
+  --color-callout-danger-border: #fecaca;
+  --color-callout-danger-text: #991b1b;
+  --color-callout-danger-label: #dc2626;
+
+  --color-callout-accent-bg: #f5f3ff;
+  --color-callout-accent-border: #ddd6fe;
+  --color-callout-accent-text: #5b21b6;
+  --color-callout-accent-label: #7c3aed;
+
+  --color-callout-neutral-bg: #f9fafb;
+  --color-callout-neutral-border: #e5e7eb;
+  --color-callout-neutral-text: #374151;
+  --color-callout-neutral-label: #6b7280;
+
+  /* Code block */
+  --color-code-bg: #1e293b;
+  --color-code-text: #e2e8f0;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+  --shadow-card-hover: 0 4px 12px -2px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.04);
+  --shadow-nav: 0 1px 3px 0 rgb(0 0 0 / 0.06);
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-border: #334155;
+  --color-primary: #818cf8;
+  --color-primary-light: #a5b4fc;
+  --color-primary-dark: #6366f1;
+  --color-accent: #fbbf24;
+  --color-accent-light: #fcd34d;
+  --color-success: #34d399;
+  --color-danger: #f87171;
+
+  --color-code-bg: #0f172a;
+  --color-code-text: #cbd5e1;
+
+  --color-callout-info-bg: #1e3a5f;
+  --color-callout-info-border: #1e40af;
+  --color-callout-info-text: #bfdbfe;
+  --color-callout-info-label: #60a5fa;
+
+  --color-callout-warning-bg: #3d2e0a;
+  --color-callout-warning-border: #78350f;
+  --color-callout-warning-text: #fde68a;
+  --color-callout-warning-label: #f59e0b;
+
+  --color-callout-success-bg: #0a2e1a;
+  --color-callout-success-border: #14532d;
+  --color-callout-success-text: #bbf7d0;
+  --color-callout-success-label: #22c55e;
+
+  --color-callout-danger-bg: #3b0a0a;
+  --color-callout-danger-border: #7f1d1d;
+  --color-callout-danger-text: #fecaca;
+  --color-callout-danger-label: #ef4444;
+
+  --color-callout-accent-bg: #1e1030;
+  --color-callout-accent-border: #4c1d95;
+  --color-callout-accent-text: #ddd6fe;
+  --color-callout-accent-label: #8b5cf6;
+
+  --color-callout-neutral-bg: #1a1f2b;
+  --color-callout-neutral-border: #374151;
+  --color-callout-neutral-text: #d1d5db;
+  --color-callout-neutral-label: #9ca3af;
+
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+  --shadow-card-hover: 0 4px 12px -2px rgb(0 0 0 / 0.4);
+  --shadow-nav: 0 1px 3px 0 rgb(0 0 0 / 0.2);
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ========== Keyframes ========== */
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-slide-in {
+  animation: fadeSlideIn 0.3s ease-out;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100%); }
+}
+.animate-toast-in {
+  animation: toastIn 0.4s ease-out forwards;
+}
+.animate-toast-out {
+  animation: toastOut 0.4s ease-in forwards;
+}
+
+@keyframes progressPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+.animate-progress-pulse {
+  animation: progressPulse 0.6s ease-in-out;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(120px) rotate(720deg); opacity: 0; }
+}
+.animate-confetti {
+  animation: confettiFall 2s ease-out forwards;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(79, 70, 229, 0); }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ========== 3D Card Flip ========== */
+
+.card-3d-container {
+  perspective: 1000px;
+}
+.card-3d-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-3d-inner.flipped {
+  transform: rotateY(180deg);
+}
+.card-3d-front,
+.card-3d-back {
+  backface-visibility: hidden;
+}
+.card-3d-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+
+/* ========== Lightbox ========== */
+
+.lightbox-overlay {
+  animation: fadeSlideIn 0.2s ease-out;
+}
