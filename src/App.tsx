@@ -19,7 +19,7 @@ import Practice from './pages/Practice';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/ds-sprint-/">
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
