@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Lightbox from '../components/Lightbox';
 
+const BASE = import.meta.env.BASE_URL;
+
 type ImageItem = { name: string; file: string };
 
 const categories: { title: string; images: ImageItem[] }[] = [
@@ -78,12 +80,12 @@ export default function MindMap() {
             {cat.images.map((img) => (
               <button
                 key={img.file}
-                onClick={() => setLightbox({ src: `/mindmaps/${img.file}`, alt: img.name })}
+                onClick={() => setLightbox({ src: `${BASE}mindmaps/${img.file}`, alt: img.name })}
                 className="bg-surface rounded-xl border border-border p-3 text-left cursor-pointer hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200 group"
               >
                 <div className="aspect-[4/3] bg-bg rounded-lg overflow-hidden mb-2">
                   <img
-                    src={`/mindmaps/${img.file}`}
+                    src={`${BASE}mindmaps/${img.file}`}
                     alt={img.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
