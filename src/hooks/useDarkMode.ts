@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
 export function useDarkMode() {
-  const [isDark, setIsDark] = useLocalStorage('darkMode', false);
+  const [isDark, setIsDark] = useLocalStorage('ds-sprint-dark', false);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDark);

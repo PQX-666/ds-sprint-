@@ -65,14 +65,14 @@ export default function MindMap() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-text">思维导图知识库</h1>
+        <h1 className="heading-xl text-text font-terminal">思维导图知识库</h1>
         <p className="text-text-muted mt-1">共 {categories.reduce((s, c) => s + c.images.length, 0)} 张导图，点击放大查看</p>
       </div>
 
       {categories.map((cat) => (
         <section key={cat.title}>
-          <h2 className="text-lg font-semibold text-text mb-3 flex items-center gap-2">
-            <span className="w-1 h-5 bg-primary rounded-full" />
+          <h2 className="text-lg font-semibold text-text mb-3 flex items-center gap-2 font-terminal">
+            <span className="w-1 h-5 bg-neon-cyan rounded-full shadow-[0_0_6px_rgba(0,229,255,0.4)]" />
             {cat.title}
             <span className="text-xs text-text-muted font-normal">({cat.images.length} 张)</span>
           </h2>
@@ -81,9 +81,9 @@ export default function MindMap() {
               <button
                 key={img.file}
                 onClick={() => setLightbox({ src: `${BASE}mindmaps/${img.file}`, alt: img.name })}
-                className="bg-surface rounded-xl border border-border p-3 text-left cursor-pointer hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200 group"
+                className="bg-cyber-surface rounded-2xl border border-cyber-border p-3 text-left cursor-pointer hover:shadow-card-hover hover:border-neon-cyan/30 hover:-translate-y-0.5 transition-all duration-200 group"
               >
-                <div className="aspect-[4/3] bg-bg rounded-lg overflow-hidden mb-2">
+                <div className="aspect-[4/3] bg-cyber-bg rounded-lg overflow-hidden mb-2">
                   <img
                     src={`${BASE}mindmaps/${img.file}`}
                     alt={img.name}

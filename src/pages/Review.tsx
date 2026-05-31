@@ -5,6 +5,13 @@ import { recallCards } from '../data/recallCards';
 import { memoryLists } from '../data/memoryList';
 import { Link } from 'react-router-dom';
 
+const typeRoutes: Record<string, string> = {
+  concept: '/concepts',
+  code: '/code-training',
+  recall: '/recall',
+  memory: '/memory',
+};
+
 export default function Review() {
   const { getLevel } = useMastery();
 
@@ -22,11 +29,11 @@ export default function Review() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-text">复习计划</h1>
+      <h1 className="heading-xl text-text font-terminal">复习计划</h1>
 
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="bg-surface rounded-xl border border-danger/30 p-5">
-          <h2 className="text-lg font-semibold text-danger mb-2">
+        <div className="bg-cyber-surface rounded-2xl border border-neon-red/30 p-5">
+          <h2 className="text-lg font-semibold text-neon-red mb-2 font-terminal">
             需要复习 ({mustReview.length})
           </h2>
           {mustReview.length === 0 ? (
@@ -34,9 +41,14 @@ export default function Review() {
           ) : (
             <ul className="space-y-2">
               {mustReview.slice(0, 10).map((item) => (
-                <li key={item.id} className="text-sm text-text flex gap-2">
-                  <span className="text-danger shrink-0">!</span>
-                  {item.title}
+                <li key={item.id} className="text-sm text-text">
+                  <Link
+                    to={typeRoutes[item.type]}
+                    className="flex gap-2 no-underline text-text hover:text-neon-cyan transition-colors"
+                  >
+                    <span className="text-neon-red shrink-0">!</span>
+                    {item.title}
+                  </Link>
                 </li>
               ))}
               {mustReview.length > 10 && (
@@ -46,8 +58,8 @@ export default function Review() {
           )}
         </div>
 
-        <div className="bg-surface rounded-xl border border-border p-5">
-          <h2 className="text-lg font-semibold text-text-muted mb-2">
+        <div className="bg-cyber-surface rounded-2xl border border-cyber-border p-5">
+          <h2 className="text-lg font-semibold text-text-muted mb-2 font-terminal">
             尚未学习 ({unlearned.length})
           </h2>
           {unlearned.length === 0 ? (
@@ -55,9 +67,14 @@ export default function Review() {
           ) : (
             <ul className="space-y-2">
               {unlearned.slice(0, 10).map((item) => (
-                <li key={item.id} className="text-sm text-text flex gap-2">
-                  <span className="text-text-muted shrink-0">-</span>
-                  {item.title}
+                <li key={item.id} className="text-sm text-text">
+                  <Link
+                    to={typeRoutes[item.type]}
+                    className="flex gap-2 no-underline text-text hover:text-neon-cyan transition-colors"
+                  >
+                    <span className="text-text-muted shrink-0">-</span>
+                    {item.title}
+                  </Link>
                 </li>
               ))}
               {unlearned.length > 10 && (
@@ -70,7 +87,7 @@ export default function Review() {
 
       <Link
         to="/learn"
-        className="inline-block bg-primary text-white px-6 py-2.5 rounded-xl font-medium no-underline hover:bg-primary-dark"
+        className="inline-block gradient-cyber text-white px-6 py-2.5 rounded-xl font-medium no-underline hover:brightness-110 transition-all font-terminal"
       >
         去学习
       </Link>

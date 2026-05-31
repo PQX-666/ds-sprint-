@@ -13,7 +13,7 @@ export default function Design() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-text">算法设计题</h1>
+      <h1 className="heading-xl text-text font-terminal">算法设计题</h1>
       <p className="text-text-muted">三段式训练：算法思想 + 伪代码 + 复杂度分析，共 {designQuestions.length} 题。</p>
 
       <div className="flex gap-2 flex-wrap">
@@ -21,8 +21,8 @@ export default function Design() {
           <button
             key={q.id}
             onClick={() => { setActiveId(q.id); setShowAnswer(false); }}
-            className={`text-sm px-3 py-1.5 rounded-lg border cursor-pointer transition-colors ${
-              activeId === q.id ? 'bg-primary text-white border-primary' : 'bg-surface text-text border-border hover:border-primary/50'
+            className={`text-sm px-3 py-1.5 rounded-lg border cursor-pointer transition-colors font-terminal ${
+              activeId === q.id ? 'bg-neon-cyan text-black border-neon-cyan' : 'bg-cyber-surface text-text border-cyber-border hover:border-neon-cyan/50'
             }`}
           >
             {q.title}
@@ -32,11 +32,11 @@ export default function Design() {
       </div>
 
       {active && (
-        <div className="bg-surface rounded-xl border border-border p-5 space-y-4">
+        <div className="bg-cyber-surface rounded-2xl border border-cyber-border p-5 space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-xl font-semibold text-text">{active.title}</h2>
-              <span className="text-xs text-text-muted bg-border px-2 py-0.5 rounded">{active.category}</span>
+              <span className="text-xs text-text-muted bg-cyber-border px-2 py-0.5 rounded font-terminal">{active.category}</span>
             </div>
             <MasteryBadge level={getLevel(active.id)} />
           </div>
@@ -48,7 +48,7 @@ export default function Design() {
 
           <button
             onClick={() => setShowAnswer(!showAnswer)}
-            className="text-sm font-medium text-primary hover:text-primary-dark cursor-pointer"
+            className="text-sm font-medium text-neon-cyan hover:text-neon-magenta cursor-pointer transition-colors font-terminal"
           >
             {showAnswer ? '隐藏答案 ▲' : '查看答案 ▼'}
           </button>
@@ -102,8 +102,8 @@ export default function Design() {
           )}
 
           <div className="flex gap-2 pt-2">
-            <button onClick={() => markMastered(active.id)} className="bg-success text-white px-4 py-2 rounded-lg text-sm font-medium cursor-pointer">已掌握</button>
-            <button onClick={() => markFuzzy(active.id)} className="bg-accent text-white px-4 py-2 rounded-lg text-sm font-medium cursor-pointer">还需复习</button>
+            <button onClick={() => markMastered(active.id)} className="bg-neon-green text-black px-4 py-2 rounded-lg text-sm font-medium cursor-pointer hover:bg-neon-green/80 transition-colors font-terminal">已掌握</button>
+            <button onClick={() => markFuzzy(active.id)} className="bg-neon-yellow text-black px-4 py-2 rounded-lg text-sm font-medium cursor-pointer hover:bg-neon-yellow/80 transition-colors font-terminal">还需复习</button>
           </div>
         </div>
       )}

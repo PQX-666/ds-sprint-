@@ -12,7 +12,7 @@ export default function Drawing() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-text">画图题专项</h1>
+      <h1 className="heading-xl text-text font-terminal">画图题专项</h1>
       <p className="text-text-muted">训练画图和手算能力，共 {drawingQuestions.length} 题。</p>
 
       <div className="flex gap-2 flex-wrap">
@@ -20,8 +20,8 @@ export default function Drawing() {
           <button
             key={q.id}
             onClick={() => { setActiveId(q.id); setShowAnswer(false); }}
-            className={`text-sm px-3 py-1.5 rounded-lg border cursor-pointer transition-colors ${
-              activeId === q.id ? 'bg-primary text-white border-primary' : 'bg-surface text-text border-border hover:border-primary/50'
+            className={`text-sm px-3 py-1.5 rounded-lg border cursor-pointer transition-colors font-terminal ${
+              activeId === q.id ? 'bg-neon-cyan text-black border-neon-cyan' : 'bg-cyber-surface text-text border-cyber-border hover:border-neon-cyan/50'
             }`}
           >
             {q.title}
@@ -31,11 +31,11 @@ export default function Drawing() {
       </div>
 
       {active && (
-        <div className="bg-surface rounded-xl border border-border p-5 space-y-4">
+        <div className="bg-cyber-surface rounded-2xl border border-cyber-border p-5 space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-xl font-semibold text-text">{active.title}</h2>
-              <span className="text-xs text-text-muted bg-border px-2 py-0.5 rounded">{active.category}</span>
+              <span className="text-xs text-text-muted bg-cyber-border px-2 py-0.5 rounded font-terminal">{active.category}</span>
             </div>
             <MasteryBadge level={getLevel(active.id)} />
           </div>
@@ -55,7 +55,7 @@ export default function Drawing() {
             <ol className="space-y-2">
               {active.steps.map((s, i) => (
                 <li key={i} className="flex gap-3 text-sm text-text">
-                  <span className="text-primary font-bold shrink-0">{i + 1}.</span> {s}
+                  <span className="text-neon-cyan font-bold shrink-0">{i + 1}.</span> {s}
                 </li>
               ))}
             </ol>
@@ -63,7 +63,7 @@ export default function Drawing() {
 
           <button
             onClick={() => setShowAnswer(!showAnswer)}
-            className="text-sm font-medium text-primary hover:text-primary-dark cursor-pointer"
+            className="text-sm font-medium text-neon-cyan hover:text-neon-magenta cursor-pointer transition-colors font-terminal"
           >
             {showAnswer ? '隐藏答案 ▲' : '查看答案 ▼'}
           </button>
@@ -92,8 +92,8 @@ export default function Drawing() {
           </div>
 
           <div className="flex gap-2 pt-2">
-            <button onClick={() => markMastered(active.id)} className="bg-success text-white px-4 py-2 rounded-lg text-sm font-medium cursor-pointer">画对了</button>
-            <button onClick={() => markFuzzy(active.id)} className="bg-accent text-white px-4 py-2 rounded-lg text-sm font-medium cursor-pointer">不太确定</button>
+            <button onClick={() => markMastered(active.id)} className="bg-neon-green text-black px-4 py-2 rounded-lg text-sm font-medium cursor-pointer hover:bg-neon-green/80 transition-colors font-terminal">画对了</button>
+            <button onClick={() => markFuzzy(active.id)} className="bg-neon-yellow text-black px-4 py-2 rounded-lg text-sm font-medium cursor-pointer hover:bg-neon-yellow/80 transition-colors font-terminal">不太确定</button>
           </div>
         </div>
       )}

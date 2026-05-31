@@ -9,11 +9,11 @@ export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-bg">
+    <div className="min-h-screen bg-cyber-bg bg-cyber-grid">
       <Navbar onMenuClick={() => setSidebarOpen(true)} />
       <div className="flex pt-14">
         <Sidebar />
-        <main className="flex-1 p-4 md:p-6 max-w-4xl mx-auto w-full pb-20 md:pb-6">
+        <main className="flex-1 p-4 md:p-6 max-w-3xl mx-auto w-full pb-20 md:pb-6 page-enter">
           <Outlet />
         </main>
       </div>
@@ -34,9 +34,6 @@ export default function Layout() {
       <MobileBottomNav />
       <ToastContainer />
 
-      <footer className="hidden md:block text-center py-6 text-xs text-text-muted border-t border-border">
-        Made with ❤️ by 彭启轩 | 助力每一位同学的期末考试
-      </footer>
     </div>
   );
 }

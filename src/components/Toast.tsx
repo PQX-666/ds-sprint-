@@ -35,7 +35,7 @@ export default function ToastContainer() {
       {toasts.map((t) => (
         <div
           key={t.id}
-          className={`pointer-events-auto bg-surface border border-border shadow-card-hover rounded-xl px-4 py-3 text-sm text-text font-medium max-w-xs ${
+          className={`pointer-events-auto bg-cyber-surface/80 backdrop-blur-md border border-neon-cyan/30 shadow-[0_0_20px_rgba(0,229,255,0.15)] rounded-xl px-4 py-3 text-sm text-text font-medium max-w-xs font-terminal ${
             t.leaving ? 'animate-toast-out' : 'animate-toast-in'
           }`}
         >

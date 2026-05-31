@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Card from '../components/Card';
 
 const STORAGE_KEY = 'ds-sprint-onboarding-seen';
 
@@ -19,102 +18,153 @@ export default function Onboarding() {
   const dismiss = () => setShowOverlay(false);
 
   const content = (
-    <div className="space-y-6 max-w-2xl">
-      <div className="bg-callout-accent-bg border border-callout-accent-border rounded-xl p-6">
-        <p className="text-callout-accent-text leading-relaxed">
-          很多同学反馈不知道如何复习数据结构、不知道考什么，感觉自己通不过考试，很焦虑。
+    <div className="space-y-8 max-w-2xl text-text-secondary leading-relaxed">
+      {/* 个人介绍 */}
+      <div className="bg-neon-cyan-dim border border-neon-cyan/30 rounded-2xl p-6 space-y-3 text-sm">
+        <p className="text-neon-cyan font-terminal text-base font-semibold">
+          &gt; 大家好，我叫彭启轩。
         </p>
-        <p className="text-callout-accent-text leading-relaxed mt-2">
-          于是我按照老师上课时讲的重点内容，根据自己的理解和思考，借助 AI 的强大功能，开发了这个网站。
+        <p>
+          这是我结合 AI 编程设计的高效数据结构期末复习网页 App。
         </p>
-        <p className="text-callout-accent-text font-medium mt-2">
-          希望对你有所帮助，完整跟进这些步骤，及格肯定不成问题。
+        <p>
+          很多同学都不知道数据结构该怎么复习——没有模拟题、上课听得一知半解、
+          上机考试分数也不理想，担心期末挂科是正常的。大家的焦虑，我都理解。
+        </p>
+        <p>
+          于是我结合三样东西做出了这个网站：老师上课讲的重点内容和考点、
+          学习通上面的原题（老师明确说考试题型就是这里面的）、
+          以及我自己对数据结构这门课的理解。
         </p>
       </div>
 
+      {/* 五大核心板块 */}
       <div>
-        <h2 className="text-xl font-bold text-text mb-4">推荐学习路径</h2>
-        <div className="space-y-3">
+        <h2 className="text-lg font-bold text-neon-cyan font-terminal mb-4">
+          &gt; 五大核心板块（对应考试题型）
+        </h2>
+        <div className="space-y-2">
           {[
-            { step: 1, title: '概念地基', desc: '先看一遍概念，理解原理，标记掌握程度', link: '/concepts' },
-            { step: 2, title: '核心代码训练', desc: '填空训练 + 逐行批注，掌握必考代码', link: '/code-training' },
-            { step: 3, title: '画图题专项', desc: '按考试模板练习画图题', link: '/drawing' },
-            { step: 4, title: '算法设计题', desc: '三段式训练（思想 + 伪代码 + 复杂度）', link: '/design' },
-            { step: 5, title: '排序分析', desc: '背熟性能表 + 场景选择题', link: '/sorting' },
-          ].map(({ step, title, desc, link }) => (
-            <Link key={step} to={link} className="no-underline block">
-              <Card variant="interactive">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shrink-0">
-                    {step}
-                  </span>
-                  <div>
-                    <h3 className="font-semibold text-text">{title}</h3>
-                    <p className="text-sm text-text-muted mt-0.5">{desc}</p>
+            { label: '概念理解', desc: '用容易理解的方式讲解基础概念，整理了老师强调的考点和重点' },
+            { label: '代码训练', desc: '含理解记忆和代码填空，覆盖老师强调的重点代码' },
+            { label: '画图题', desc: '树和图的画图推演专项训练' },
+            { label: '设计题', desc: '算法设计题（最后一道大题 15 分），含答题方向和解题方法' },
+            { label: '速记卡片', desc: '快速记忆考点，翻转卡片式互动' },
+          ].map(({ label, desc }) => (
+            <div key={label} className="flex items-start gap-3 px-4 py-3 bg-cyber-surface border border-cyber-border rounded-xl">
+              <span className="text-neon-cyan font-terminal text-xs shrink-0 mt-0.5">&gt;</span>
+              <div>
+                <p className="text-text font-medium">{label}</p>
+                <p className="text-xs text-text-muted">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 额外工具 */}
+      <div>
+        <h2 className="text-lg font-bold text-neon-magenta font-terminal mb-4">
+          &gt; 额外工具
+        </h2>
+        <div className="space-y-2">
+          {[
+            { label: '思维导图', desc: '全部手工制作，帮助快速建立知识框架', link: '/mind-maps', highlight: true },
+            { label: '刷题训练', desc: '全部来自学习通作业原题，最具参考价值', link: '/practice', highlight: true },
+            { label: '记背列表 / 限时冲刺 / 模拟考试', desc: '多元化复习工具，全方位巩固', highlight: false },
+          ].map(({ label, desc, link, highlight }) =>
+            link ? (
+              <Link key={label} to={link} className="no-underline">
+                <div className={`px-4 py-3 border rounded-xl flex items-start gap-3 transition-all hover:scale-[1.01] ${
+                  highlight
+                    ? 'border-neon-yellow/40 bg-neon-yellow-dim/30'
+                    : 'border-cyber-border bg-cyber-surface'
+                }`}>
+                  <span className={highlight ? 'text-neon-yellow font-terminal text-xs shrink-0 mt-0.5' : 'text-text-muted font-terminal text-xs shrink-0 mt-0.5'}>&gt;</span>
+                  <div className="flex-1">
+                    <p className={highlight ? 'text-neon-yellow font-medium' : 'text-text font-medium'}>{label}</p>
+                    <p className="text-xs text-text-muted">{desc}</p>
                   </div>
+                  {highlight && <span className="text-neon-yellow self-center">→</span>}
                 </div>
-              </Card>
-            </Link>
-          ))}
+              </Link>
+            ) : (
+              <div key={label} className="px-4 py-3 bg-cyber-surface border border-cyber-border rounded-xl flex items-start gap-3">
+                <span className="text-text-muted font-terminal text-xs shrink-0 mt-0.5">&gt;</span>
+                <div>
+                  <p className="text-text font-medium">{label}</p>
+                  <p className="text-xs text-text-muted">{desc}</p>
+                </div>
+              </div>
+            )
+          )}
         </div>
       </div>
 
+      {/* 推荐学习路径 */}
       <div>
-        <h2 className="text-xl font-bold text-text mb-4">学完以上后</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <h2 className="text-lg font-bold text-neon-green font-terminal mb-4">
+          &gt; 推荐学习路径（最高效）
+        </h2>
+        <div className="space-y-2">
           {[
-            { num: 6, text: '用速记卡片快速过一遍所有考点', link: '/recall' },
-            { num: 7, text: '做模拟考试检验水平', link: '/mock' },
-            { num: 8, text: '错题本复习薄弱点', link: '/wrong-book' },
-            { num: 9, text: '考前看背诵清单过口诀', link: '/memory' },
-            { num: 10, text: '限时冲刺刷反应速度', link: '/sprint' },
-          ].map(({ num, text, link }) => (
-            <Link key={num} to={link} className="no-underline block">
-              <Card variant="interactive" className="h-full">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-text-muted">{num}.</span>
-                  <span className="text-sm text-text">{text}</span>
+            { step: 1, label: '刷题训练', desc: '从这里开始！学习通原题，直接了解考点', link: '/practice', highlight: true },
+            { step: 2, label: '思维导图', desc: '建立各章知识框架', link: '/mind-maps' },
+            { step: 3, label: '概念理解', desc: '巩固基础知识点', link: '/concepts' },
+            { step: 4, label: '代码训练、画图题、设计题、排序专项', desc: '专项突破各类题型', link: '/learn' },
+            { step: 5, label: '速记卡片、记背列表、限时冲刺', desc: '考前巩固，查漏补缺', link: '/recall' },
+          ].map(({ step, label, desc, link, highlight }) => (
+            <Link key={step} to={link!} className="no-underline block group">
+              <div className={`flex items-start gap-3 px-4 py-3 border rounded-xl transition-all hover:scale-[1.01] ${
+                highlight
+                  ? 'border-neon-yellow/50 bg-neon-yellow-dim/30 animate-neon-pulse'
+                  : 'border-cyber-border bg-cyber-surface hover:border-neon-cyan/30'
+              }`}>
+                <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 font-terminal ${
+                  highlight ? 'bg-neon-yellow text-black' : 'bg-cyber-border text-text-muted'
+                }`}>{step}</span>
+                <div className="flex-1">
+                  <p className={highlight ? 'text-neon-yellow font-medium' : 'text-text font-medium'}>{label}</p>
+                  <p className="text-xs text-text-muted">{desc}</p>
                 </div>
-              </Card>
+                <span className={`text-lg self-center group-hover:translate-x-1 transition-transform ${highlight ? 'text-neon-yellow' : 'text-neon-cyan'}`}>→</span>
+              </div>
             </Link>
           ))}
         </div>
       </div>
 
-      <div className="bg-callout-info-bg border border-callout-info-border rounded-xl p-5">
-        <h3 className="font-semibold text-callout-info-label mb-2">小技巧</h3>
-        <ul className="space-y-1.5 text-sm text-callout-info-text">
-          <li>每个知识点标记"已掌握/模糊/必复习"，系统会自动追踪</li>
-          <li>模糊和做错的题会自动进入错题本</li>
-          <li>模拟考可以反复做，每次题目随机排列</li>
-          <li>支持暗色模式，晚上学习不刺眼（右上角切换）</li>
-          <li>思维导图知识库提供了 21 张完整的复习导图</li>
-        </ul>
+      {/* 学习建议 */}
+      <div className="bg-neon-green-dim border border-neon-green/30 rounded-2xl p-5 space-y-2 text-sm">
+        <p className="text-neon-green font-terminal font-semibold">&gt; 学习建议</p>
+        <p>不用一口气全部看完。从现在起，每天花一个小时：刷几道真题 → 看一章思维导图 → 过一遍对应概念。</p>
+        <p>间歇重复记忆、主动检索、通过题目加深理解——这是脑科学验证最高效的学习方法。</p>
+        <p className="text-neon-green font-medium pt-1">祝大家数据结构高分拿下，期末顺利！🚀</p>
       </div>
     </div>
   );
 
   if (showOverlay) {
     return (
-      <div className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center p-4">
-        <div className="bg-surface rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 animate-fade-slide-in">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-2xl font-bold text-text">欢迎使用 DS Sprint</h1>
+      <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="bg-cyber-surface border border-neon-cyan/30 rounded-2xl shadow-[0_0_60px_rgba(0,229,255,0.15)] max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 animate-scale-in">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-xl font-bold gradient-cyber-text"># 数据结构期末冲刺</h1>
             <button
               onClick={dismiss}
-              className="bg-primary text-white px-4 py-2 rounded-xl text-sm font-medium cursor-pointer hover:bg-primary-dark transition-colors"
+              className="gradient-cyber text-white px-5 py-2 rounded-xl text-sm font-medium cursor-pointer hover:brightness-110 transition-all font-terminal"
             >
-              开始学习
+              开始学习 →
             </button>
           </div>
-          <p className="text-sm text-text-muted mb-4">作者：彭启轩</p>
+          <p className="text-xs text-text-muted font-terminal mb-6">&gt; author: 彭启轩</p>
           {content}
           <div className="mt-6 text-center">
             <button
-              onClick={() => { dismiss(); navigate('/concepts'); }}
-              className="bg-primary text-white px-8 py-3 rounded-xl text-lg font-medium cursor-pointer hover:bg-primary-dark transition-colors"
+              onClick={() => { dismiss(); navigate('/practice'); }}
+              className="gradient-cyber text-white px-8 py-3 rounded-xl text-base font-medium cursor-pointer hover:brightness-110 transition-all font-terminal animate-neon-pulse"
             >
-              从概念开始
+              直接开始刷题 →
             </button>
           </div>
         </div>
@@ -123,9 +173,13 @@ export default function Onboarding() {
   }
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-text">使用说明</h1>
-      <p className="text-sm text-text-muted">作者：彭启轩</p>
+    <div className="space-y-8">
+      <div>
+        <h1 className="heading-xl text-text font-terminal">
+          <span className="gradient-cyber-text"># 使用说明</span>
+        </h1>
+        <p className="text-text-muted text-sm mt-1 font-terminal">&gt; author: 彭启轩</p>
+      </div>
       {content}
     </div>
   );

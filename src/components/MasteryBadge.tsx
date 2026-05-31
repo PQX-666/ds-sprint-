@@ -1,11 +1,11 @@
 import type { MasteryLevel } from '../types';
 
 const config: Record<MasteryLevel, { label: string; icon: string; tip: string; className: string }> = {
-  mastered: { label: '已掌握', icon: '✓', tip: '你已经完全掌握了这个知识点', className: 'bg-success/10 text-success border-success/30' },
-  fuzzy: { label: '模糊', icon: '~', tip: '还有些模糊，建议再复习一遍', className: 'bg-accent/10 text-accent border-accent/30' },
-  wrong: { label: '做错', icon: '!', tip: '做错过，已加入错题本', className: 'bg-danger/10 text-danger border-danger/30' },
-  unlearned: { label: '未学', icon: '○', tip: '还没有开始学习', className: 'bg-border text-text-muted border-border' },
-  'must-review': { label: '必复习', icon: '!!', tip: '考前必须再过一遍的重点', className: 'bg-danger/20 text-danger border-danger/50' },
+  mastered: { label: '已掌握', icon: '✓', tip: '你已经完全掌握了这个知识点', className: 'bg-neon-cyan-dim text-neon-cyan border-neon-cyan/25' },
+  fuzzy: { label: '模糊', icon: '~', tip: '还有些模糊，建议再复习一遍', className: 'bg-neon-yellow-dim text-neon-yellow border-neon-yellow/25' },
+  wrong: { label: '做错', icon: '!', tip: '做错过，已加入错题本', className: 'bg-cyber-elevated text-text-secondary border-cyber-border-light' },
+  unlearned: { label: '未学', icon: '○', tip: '还没有开始学习', className: 'bg-cyber-border text-text-muted border-cyber-border' },
+  'must-review': { label: '必复习', icon: '!!', tip: '考前必须再过一遍的重点', className: 'bg-neon-red-dim text-neon-red border-neon-red/25' },
 };
 
 export default function MasteryBadge({ level }: { level: MasteryLevel }) {
